@@ -1,0 +1,7 @@
+public
+node_modules
+coverage
+dist
+.idea
+yarnInstall.bat 
+
