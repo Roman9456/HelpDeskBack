@@ -46,6 +46,18 @@ router.post('/api/tickets', ctx => {
     ctx.body = newTicket;
 });
 
+// DELETE request to delete a ticket by id
+router.delete('/api/tickets/:id', ctx => {
+    const ticketId = parseInt(ctx.params.id);
+    const index = tickets.findIndex(t => t.id === ticketId);
+    if (index !== -1) {
+        tickets.splice(index, 1);
+        ctx.status = 204; // No content response on successful deletion
+    } else {
+        ctx.status = 404; // Not Found if ticket with given ID does not exist
+    }
+});
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 
